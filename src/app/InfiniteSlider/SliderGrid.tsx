@@ -44,7 +44,7 @@ const rotateSlider = keyframes`
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(var(--track-width) / 2 * -1));
+    transform: translateX(calc(var(--track-width) / 2));
   }
 `
 
@@ -72,7 +72,7 @@ const SliderGrid: React.FC<React.PropsWithChildren> = ({ children }) => {
     <Wrapper
       style={{
         '--card-width': '500px',
-        '--track-width': `${trackWidth}px`,
+        '--track-width': `-${trackWidth}px`,
       }}
     >
       <Track ref={trackRef}>{children}</Track>
