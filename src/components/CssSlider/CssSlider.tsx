@@ -1,10 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 
+const slide = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(var(--track-width) / 2));
+  }
+`
+
 type StyleProps = {
   style: {
     '--track-width': string
     '--card-width': string
+    '--card-gap': string
   }
 }
 const Wrapper = styled.div<StyleProps>`
@@ -39,28 +49,21 @@ const Wrapper = styled.div<StyleProps>`
   }
 `
 
-const rotateSlider = keyframes`
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(var(--track-width) / 2));
-  }
-`
-
 const Track = styled.div`
   display: flex;
-  gap: 32px;
-  animation: ${rotateSlider} 45s linear infinite;
+  gap: var(--card-gap);
+  animation: ${slide} 45s linear infinite;
 
   &:hover {
     animation-play-state: paused;
   }
 `
 
-const SliderGrid: React.FC<React.PropsWithChildren> = ({ children }) => {
+const CssSlider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const trackRef = useRef<HTMLDivElement | null>(null)
   const [trackWidth, setTrackWidth] = useState(0)
+
+  const cardGap = 32
 
   useEffect(() => {
     if (trackRef) {
@@ -72,7 +75,8 @@ const SliderGrid: React.FC<React.PropsWithChildren> = ({ children }) => {
     <Wrapper
       style={{
         '--card-width': '500px',
-        '--track-width': `-${trackWidth}px`,
+        '--card-gap': `${cardGap}px`,
+        '--track-width': `-${trackWidth + cardGap}px`,
       }}
     >
       <Track ref={trackRef}>{children}</Track>
@@ -80,4 +84,4 @@ const SliderGrid: React.FC<React.PropsWithChildren> = ({ children }) => {
   )
 }
 
-export default SliderGrid
+export default CssSlider

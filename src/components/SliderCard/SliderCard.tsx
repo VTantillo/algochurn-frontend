@@ -1,13 +1,13 @@
+import { SliderCardDetails } from '@app/InfiniteSlider/details'
 import React from 'react'
 import styled from 'styled-components'
-import { SliderCardDetails } from './details'
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
   gap: 8px;
-  min-width: var(--card-width, 100px);
+  min-width: var(--card-width, 500px);
   height: 300px;
   padding: 48px;
   justify-content: space-between;

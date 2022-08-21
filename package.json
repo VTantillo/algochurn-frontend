@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@fontsource/archivo": "^4.5.7",
+    "@motionone/utils": "^10.14.0",
+    "framer-motion": "^7.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
